@@ -1,0 +1,16 @@
+# NPM files
+npm-debug.log
+
+# Ignore node modules
+node_modules
+config.json
+
+# Ignore dist
+dist
+dist_child
+docs
+docs_child
+bundles
+
+# test coverage info
+test/__coverage__

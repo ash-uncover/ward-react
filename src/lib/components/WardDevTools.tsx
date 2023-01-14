@@ -14,9 +14,6 @@ export const WardDevTools = ({
 
   const [open, setOpen] = useState(false)
 
-  // How to se it ? check docs
-  //useContext({})
-
   // Events //
 
   const handleToggleOpen = () => {

@@ -49,7 +49,6 @@ export const WardElement = ({
       )
     }
     case 'webcomponent': {
-      debugger
       const TagName = element.element!
       const scriptId = `ward-import-${TagName}`
       const current = document.getElementById(scriptId)

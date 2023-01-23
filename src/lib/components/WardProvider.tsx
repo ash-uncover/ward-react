@@ -19,15 +19,18 @@ export const WardContext = createContext<PluginManagerData>({
 })
 
 export interface WardProviderProperties {
-  plugin?: string
+  plugin: string
   children?: ReactNode
 }
 
 export const WardProvider = ({
+  plugin,
   children,
 }: WardProviderProperties) => {
 
   // Hooks //
+
+  const [pluginMgr] = useState(new PluginManager())
 
   const [data, setData] = useState<PluginManagerData>({
     roots: {},
@@ -37,11 +40,12 @@ export const WardProvider = ({
   })
 
   useEffect(() => {
-    const pluginMgr = new PluginManager()
-    pluginMgr.register(() => {
-      setData(pluginMgr.data)
-    })
-  }, [])
+    pluginMgr.reset()
+    pluginMgr.loadPlugin(plugin)
+    const cb = () => setData(pluginMgr.data)
+    pluginMgr.register(cb)
+    return () => pluginMgr.unregister(cb)
+  }, [plugin])
 
   // Rendering //
 

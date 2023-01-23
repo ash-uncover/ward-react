@@ -12,7 +12,6 @@ import React, {
 } from 'react'
 
 export const WardContext = createContext<PluginManagerData>({
-  datas: {},
   roots: {},
   plugins: {},
   definitions: {},
@@ -25,17 +24,22 @@ export interface WardProviderProperties {
 }
 
 export const WardProvider = ({
-  plugin,
   children,
 }: WardProviderProperties) => {
 
   // Hooks //
 
-  const [data, setData] = useState<PluginManagerData>(PluginManager.data)
+  const [data, setData] = useState<PluginManagerData>({
+    roots: {},
+    plugins: {},
+    definitions: {},
+    providers: {},
+  })
 
   useEffect(() => {
-    PluginManager.register(() => {
-      setData(PluginManager.data)
+    const pluginMgr = new PluginManager()
+    pluginMgr.register(() => {
+      setData(pluginMgr.data)
     })
   }, [])
 

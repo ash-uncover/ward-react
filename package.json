@@ -1,6 +1,6 @@
 {
   "name": "@uncover/ward-react",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "author": "aSH <ash.uncover@gmail.com>",
   "description": "Ward - React integration",
   "license": "MIT",
@@ -24,10 +24,10 @@
   "dependencies": {
     "@uncover/js-utils": "^0.0.12",
     "@uncover/js-utils-logger": "^0.1.5",
-    "@uncover/ward": "0.1.8"
+    "@uncover/ward": "^0.1.9"
   },
   "peerDependencies": {
-    "@uncover/ward": "^0.1.8"
+    "@uncover/ward": "^0.1.9"
   },
   "devDependencies": {
     "@babel/cli": "^7.20.7",
@@ -43,13 +43,13 @@
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.3",
     "html-webpack-plugin": "^5.5.0",
-    "jest": "^29.3.1",
-    "jest-environment-jsdom": "^29.3.1",
+    "jest": "^29.4.0",
+    "jest-environment-jsdom": "^29.4.0",
     "node-fetch": "^3.3.0",
     "postcss": "^8.4.21",
     "postcss-cli": "^10.1.0",
     "postcss-loader": "^7.0.2",
-    "postcss-preset-env": "^7.8.3",
+    "postcss-preset-env": "^8.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.7.0",

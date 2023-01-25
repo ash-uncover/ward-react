@@ -1,7 +1,9 @@
 import React, {
   useState
 } from 'react'
-
+// Components
+import { WardDevToolsContent } from './content/WardDevToolsContent'
+// Style
 import './WardDevTools.css'
 
 export interface WardDevToolsProperties {
@@ -12,7 +14,7 @@ export const WardDevTools = ({
 
   // Hooks //
 
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
 
   // Events //
 
@@ -31,7 +33,6 @@ export const WardDevTools = ({
     <div
       className={classes.join(' ')}
     >
-
       <button
         className='ward-dev-tools__button'
         onClick={handleToggleOpen}
@@ -40,7 +41,7 @@ export const WardDevTools = ({
       </button>
 
       <div className='ward-dev-tools__dialog'>
-        dialog
+        <WardDevToolsContent/>
       </div>
     </div>
 

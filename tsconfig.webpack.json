@@ -2,7 +2,6 @@
   "compilerOptions": {
     "baseUrl": ".",
     "declaration": true,
-    "emitDeclarationOnly": true,
     "esModuleInterop": true,
     "jsx": "react",
     "lib": [
@@ -12,8 +11,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": true,
-    "outDir": "src/dist",
-    "removeComments": true,
+    "outDir": "docs",
     "sourceMap": true,
     "strict": true,
     "target": "es6",
@@ -22,10 +20,11 @@
     ]
   },
   "include": [
-    "src/lib"
+    "src"
   ],
   "exclude": [
-    "src/dist",
+    "dist",
+    "docs",
     "node_modules",
     "test",
     ".vscode"

@@ -7,6 +7,8 @@
   pointer-events: none;
   z-index: 5;
 
+  user-select: none;
+
   & .ward-dev-tools__button {
     position: absolute;
     bottom: 1rem;
@@ -38,7 +40,7 @@
     top: 1rem;
     left: 1rem;
     bottom: 4rem;
-    width: 50%;
+    right: 1rem;
 
     border-radius: 0.5rem;
     background: #DDD;

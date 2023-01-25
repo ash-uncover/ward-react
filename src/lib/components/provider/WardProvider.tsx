@@ -12,6 +12,7 @@ import React, {
 } from 'react'
 
 export const WardContext = createContext<PluginManagerData>({
+  urls: {},
   roots: {},
   plugins: {},
   definitions: {},
@@ -33,6 +34,7 @@ export const WardProvider = ({
   const [pluginMgr] = useState(new PluginManager())
 
   const [data, setData] = useState<PluginManagerData>({
+    urls: {},
     roots: {},
     plugins: {},
     definitions: {},
@@ -54,6 +56,15 @@ export const WardProvider = ({
       {children}
     </WardContext.Provider>
   )
+}
+
+export const useUrls = () => {
+  const wardContext = useContext(WardContext)
+  return wardContext.urls
+}
+export const useUrl = (url: string) => {
+  const wardContext = useContext(WardContext)
+  return wardContext.urls[url]
 }
 
 export const usePlugins = () => {

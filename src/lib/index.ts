@@ -1,12 +1,15 @@
+import './icons'
 export {
   WardDevTools
-} from './components/WardDevTools'
+} from './components/devtools/WardDevTools'
 export {
   WardElement
-} from './components/WardElement'
+} from './components/element/WardElement'
 export {
   WardContext,
   WardProvider,
+  useUrls,
+  useUrl,
   usePlugins,
   usePlugin,
   usePluginsRoot,
@@ -14,4 +17,4 @@ export {
   useDefinition,
   useProvider,
   useProviders,
-} from './components/WardProvider'
+} from './components/provider/WardProvider'

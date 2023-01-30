@@ -3,16 +3,16 @@ import React, {
 } from 'react'
 // Hooks
 import {
-  useDefinitions,
-  usePlugins,
-  usePluginsRoot,
-  useUrls
+  useWardDefinitions,
+  useWardPlugins,
+  useWardPluginsRoot,
+  useWardUrls
 } from '../../provider/WardProvider'
 // Styles
 import './WardDevToolsPlugins.css'
-import { Definition } from './Definition'
-import { Plugin } from './Plugin'
-import { Url } from './Url'
+import { Definition } from './list/Definition'
+import { Plugin } from './list/Plugin'
+import { Url } from './list/Url'
 
 export interface WardDevToolsPluginsProperties {
 }
@@ -24,13 +24,13 @@ export const WardDevToolsPlugins = ({
 
   const [selectedPlugin, setSelectedPlugin] = useState('')
 
-  const urls = useUrls()
+  const urls = useWardUrls()
   const urlsArr = Object.keys(urls)
-  const plugins = usePlugins()
+  const plugins = useWardPlugins()
   const pluginsArr = Object.values(plugins)
-  const pluginsRoot = usePluginsRoot()
+  const pluginsRoot = useWardPluginsRoot()
   const pluginsRootArr = Object.values(pluginsRoot)
-  const definitions = useDefinitions()
+  const definitions = useWardDefinitions()
   const definitionsArr = Object.values(definitions)
 
   // Events //

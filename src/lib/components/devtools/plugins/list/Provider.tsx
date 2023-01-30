@@ -1,8 +1,8 @@
 import React, { MouseEvent } from 'react'
 // Hooks
 import {
-  useProvider,
-} from '../../provider/WardProvider'
+  useWardProvider,
+} from '../../../provider/WardProvider'
 // Components
 // Styles
 import './Provider.css'
@@ -21,7 +21,7 @@ export const Provider = ({
 
   // Hooks //
 
-  const provider = useProvider(providerId)
+  const provider = useWardProvider(providerId)
 
   // Events //
 

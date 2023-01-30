@@ -1,9 +1,9 @@
 import React, { MouseEvent } from 'react'
 // Hooks
 import {
-  useDefinition,
-  useProviders
-} from '../../provider/WardProvider'
+  useWardDefinition,
+  useWardProviders
+} from '../../../provider/WardProvider'
 // Components
 // Styles
 import './Definition.css'
@@ -36,8 +36,8 @@ export const Definition = ({
 
   // Rendering //
 
-  const definition = useDefinition(definitionId)
-  const providers = useProviders(definitionId)
+  const definition = useWardDefinition(definitionId)
+  const providers = useWardProviders(definitionId)
 
   if (!definition) {
     return (

@@ -11,7 +11,11 @@ import React, {
   useState,
 } from 'react'
 
-export const WardContext = createContext<PluginManagerData>({
+interface WardContextProperties extends PluginManagerData {
+  loaded: boolean
+}
+export const WardContext = createContext<WardContextProperties>({
+  loaded: false,
   urls: {},
   roots: {},
   plugins: {},
@@ -33,7 +37,8 @@ export const WardProvider = ({
 
   const [pluginMgr] = useState(new PluginManager())
 
-  const [data, setData] = useState<PluginManagerData>({
+  const [data, setData] = useState<WardContextProperties>({
+    loaded: false,
     urls: {},
     roots: {},
     plugins: {},
@@ -44,7 +49,10 @@ export const WardProvider = ({
   useEffect(() => {
     pluginMgr.reset()
     pluginMgr.loadPlugin(plugin)
-    const cb = () => setData(pluginMgr.data)
+    const cb = () => setData({
+      loaded: true,
+      ...pluginMgr.data
+    })
     pluginMgr.register(cb)
     return () => pluginMgr.unregister(cb)
   }, [plugin])
@@ -58,42 +66,47 @@ export const WardProvider = ({
   )
 }
 
-export const useUrls = () => {
+export const useWardLoaded = () => {
+  const wardContext = useContext(WardContext)
+  return wardContext.loaded
+}
+
+export const useWardUrls = () => {
   const wardContext = useContext(WardContext)
   return wardContext.urls
 }
-export const useUrl = (url: string) => {
+export const useWardUrl = (url: string) => {
   const wardContext = useContext(WardContext)
   return wardContext.urls[url]
 }
 
-export const usePlugins = () => {
+export const useWardPlugins = () => {
   const wardContext = useContext(WardContext)
   return wardContext.plugins
 }
-export const usePlugin = (pluginId: string) => {
+export const useWardPlugin = (pluginId: string) => {
   const wardContext = useContext(WardContext)
   return wardContext.plugins[pluginId]
 }
-export const usePluginsRoot = () => {
+export const useWardPluginsRoot = () => {
   const wardContext = useContext(WardContext)
   return wardContext.roots
 }
 
-export const useDefinitions = () => {
+export const useWardDefinitions = () => {
   const wardContext = useContext(WardContext)
   return wardContext.definitions
 }
-export const useDefinition = (definitionId: string) => {
+export const useWardDefinition = (definitionId: string) => {
   const wardContext = useContext(WardContext)
   return wardContext.definitions[definitionId]
 }
 
-export const useProviders = (definitionId: string) => {
+export const useWardProviders = (definitionId: string) => {
   const wardContext = useContext(WardContext)
   return Object.values(wardContext.providers).filter(provider => provider.definition === definitionId)
 }
-export const useProvider = (providerId: string) => {
+export const useWardProvider = (providerId: string) => {
   const wardContext = useContext(WardContext)
   return wardContext.providers[providerId]
 }

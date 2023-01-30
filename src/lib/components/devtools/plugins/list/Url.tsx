@@ -1,11 +1,11 @@
 import React, { MouseEvent } from 'react'
 // Hooks
 import {
-  useUrl,
-} from '../../provider/WardProvider'
+  useWardUrl,
+} from '../../../provider/WardProvider'
 // Components
 // Styles
-import './Provider.css'
+import './Url.css'
 
 export interface UrlProperties {
   url: string
@@ -21,7 +21,7 @@ export const Url = ({
 
   // Hooks //
 
-  const urlData = useUrl(url)
+  const urlData = useWardUrl(url)
 
   // Events //
 
@@ -39,6 +39,7 @@ export const Url = ({
   }
 
   const classes = ['url-side-entry']
+  console.log(urlData.data?.name)
   if (selectedPluginId === urlData.data?.name) {
     classes.push('selected')
   }

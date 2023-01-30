@@ -1,9 +1,9 @@
 import React, { MouseEvent } from 'react'
 // Hooks
 import {
-  usePlugin,
-  usePlugins
-} from '../../provider/WardProvider'
+  useWardPlugin,
+  useWardPlugins
+} from '../../../provider/WardProvider'
 // Styles
 import './Plugin.css'
 
@@ -29,8 +29,8 @@ export const Plugin = ({
 
   // Rendering //
 
-  const plugin = usePlugin(pluginId)
-  const plugins = usePlugins()
+  const plugin = useWardPlugin(pluginId)
+  const plugins = useWardPlugins()
 
   if (!plugin) {
     return (

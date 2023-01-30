@@ -35,12 +35,13 @@
   & .ward-dev-tools__dialog {
     pointer-events: all;
     display: none;
-
     position: absolute;
     top: 1rem;
     left: 1rem;
     bottom: 4rem;
     right: 1rem;
+    padding-bottom: 0.25rem;
+    overflow: hidden;
 
     border-radius: 0.5rem;
     background: #DDD;

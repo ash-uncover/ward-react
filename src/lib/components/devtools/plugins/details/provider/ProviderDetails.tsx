@@ -32,7 +32,7 @@ export const ProviderDetails = ({
   }
 
   const renderAttributes = () => {
-    return providerData.attributes.map(attribute => {
+    return providerData.getAttributes().map(attribute => {
       return (
         <li key={attribute.name}>
           {attribute.name}
@@ -48,7 +48,7 @@ export const ProviderDetails = ({
   }
 
   const renderElements = () => {
-    return providerData.elements.map(element => {
+    return providerData.getElements().map(element => {
       return (
         <li key={element.name}>
           {element.name}

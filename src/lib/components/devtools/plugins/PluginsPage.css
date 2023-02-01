@@ -1,0 +1,22 @@
+.plugins-page {
+  min-height: 100%;
+  padding: 0rem 1rem;
+
+  display: flex;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  & .plugins-page__list {
+    flex-grow: 1;
+  }
+
+  & .plugins-page__resizer {
+    flex-grow: 0;
+    border-left: 1px solid grey;
+  }
+
+  & .plugins-page__details {
+    flex-grow: 0;
+    width: 600px;
+  }
+}

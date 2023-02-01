@@ -3,7 +3,7 @@ import React, {
 } from 'react'
 // Components
 import { WardDevToolsMessages } from '../messages/WardDevToolsMessages'
-import { WardDevToolsPlugins } from '../plugins/WardDevToolsPlugins'
+import { WardDevToolsPlugins } from '../plugins/PluginsPage'
 // Styles
 import './WardDevToolsContent.css'
 

@@ -1,4 +1,9 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700);
+
 .ward-dev-tools {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.8rem;
+
   position: fixed;
   top: 0;
   left: 0;

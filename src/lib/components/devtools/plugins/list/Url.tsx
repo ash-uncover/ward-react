@@ -39,7 +39,6 @@ export const Url = ({
   }
 
   const classes = ['url-side-entry']
-  console.log(urlData.data?.name)
   if (selectedPluginId === urlData.data?.name) {
     classes.push('selected')
   }

@@ -64,7 +64,10 @@ export const WardElement = ({
         })
         document.head.appendChild(script)
       } else if (loaded) {
-        return <TagName />
+        return (
+          <TagName
+          />
+        )
       }
       return null
     }

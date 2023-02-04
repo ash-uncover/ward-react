@@ -27,10 +27,10 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@uncover/js-utils": "^0.0.13",
     "@uncover/js-utils-logger": "^0.1.5",
-    "@uncover/ward": "^0.1.12"
+    "@uncover/ward": "file:../ward"
   },
   "peerDependencies": {
-    "@uncover/ward": "^0.1.12"
+    "@uncover/ward": "file:../ward"
   },
   "devDependencies": {
     "@babel/cli": "^7.20.7",

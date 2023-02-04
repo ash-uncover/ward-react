@@ -1,5 +1,5 @@
-import {
-  PluginManager,
+import Ward, {
+  MessageService,
   PluginManagerData
 } from '@uncover/ward'
 
@@ -12,7 +12,10 @@ import React, {
 } from 'react'
 
 interface WardContextProperties extends PluginManagerData {
-  loaded: boolean
+  loaded: boolean,
+  services: {
+    [key: string]: MessageService
+  }
 }
 export const WardContext = createContext<WardContextProperties>({
   loaded: false,
@@ -21,6 +24,7 @@ export const WardContext = createContext<WardContextProperties>({
   plugins: {},
   definitions: {},
   providers: {},
+  services: {}
 })
 
 export interface WardProviderProperties {
@@ -35,8 +39,6 @@ export const WardProvider = ({
 
   // Hooks //
 
-  const [pluginMgr] = useState(new PluginManager())
-
   const [data, setData] = useState<WardContextProperties>({
     loaded: false,
     urls: {},
@@ -44,17 +46,18 @@ export const WardProvider = ({
     plugins: {},
     definitions: {},
     providers: {},
+    services: {},
   })
 
   useEffect(() => {
-    pluginMgr.reset()
-    pluginMgr.loadPlugin(plugin)
+    Ward.reset()
+    Ward.loadPlugin(plugin)
     const cb = () => setData({
       loaded: true,
-      ...pluginMgr.data
+      ...Ward.data
     })
-    pluginMgr.register(cb)
-    return () => pluginMgr.unregister(cb)
+    Ward.register(cb)
+    return () => Ward.unregister(cb)
   }, [plugin])
 
   // Rendering //
@@ -109,4 +112,8 @@ export const useWardProviders = (definitionId: string) => {
 export const useWardProvider = (providerId: string) => {
   const wardContext = useContext(WardContext)
   return wardContext.providers[providerId]
+}
+
+export const useWardEventService = (serviceId: string) => {
+
 }

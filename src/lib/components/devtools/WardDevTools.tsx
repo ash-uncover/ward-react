@@ -41,7 +41,11 @@ export const WardDevTools = ({
       </button>
 
       <div className='ward-dev-tools__dialog'>
-        <WardDevToolsContent/>
+        <WardDevToolsContent
+          style={{
+            display: open ? undefined : 'none'
+          }}
+        />
       </div>
     </div>
 

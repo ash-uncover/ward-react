@@ -1,6 +1,6 @@
 import Ward, {
-  MessageService,
-  PluginManagerData
+  Message,
+  WardData
 } from '@uncover/ward'
 
 import React, {
@@ -11,11 +11,8 @@ import React, {
   useState,
 } from 'react'
 
-interface WardContextProperties extends PluginManagerData {
+interface WardContextProperties extends WardData {
   loaded: boolean,
-  services: {
-    [key: string]: MessageService
-  }
 }
 export const WardContext = createContext<WardContextProperties>({
   loaded: false,
@@ -50,14 +47,16 @@ export const WardProvider = ({
   })
 
   useEffect(() => {
-    Ward.reset()
+
     Ward.loadPlugin(plugin)
     const cb = () => setData({
       loaded: true,
       ...Ward.data
     })
     Ward.register(cb)
-    return () => Ward.unregister(cb)
+    return () => {
+      Ward.unregister(cb)
+    }
   }, [plugin])
 
   // Rendering //
@@ -114,6 +113,19 @@ export const useWardProvider = (providerId: string) => {
   return wardContext.providers[providerId]
 }
 
-export const useWardEventService = (serviceId: string) => {
+export const useWardServices = () => {
+  const wardContext = useContext(WardContext)
+  return wardContext.services
+}
 
+export const useWardService = (handleMessage: (message: Message) => void) => {
+  const [service, setService] = useState()
+  useEffect(() => {
+    const serv = Ward.addService(handleMessage)
+    setService(serv)
+    return () => {
+      serv.terminate()
+    }
+  }, [])
+  return service
 }

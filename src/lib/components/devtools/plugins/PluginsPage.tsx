@@ -1,4 +1,5 @@
 import React, {
+  CSSProperties,
   useState
 } from 'react'
 // Hooks
@@ -41,9 +42,11 @@ const DetailTypes: {
 }
 
 export interface WardDevToolsPluginsProperties {
+  style: CSSProperties
 }
 
 export const WardDevToolsPlugins = ({
+  style
 }: WardDevToolsPluginsProperties) => {
 
   // Hooks //
@@ -156,6 +159,7 @@ export const WardDevToolsPlugins = ({
   return (
     <div
       className={classes.join(' ')}
+      style={style}
     >
       <div className='plugins-page__list'>
         <h2>{`URLs (${urlsArr.length})`}</h2>

@@ -1,4 +1,5 @@
 import React, {
+  CSSProperties,
   useState
 } from 'react'
 // Components
@@ -8,21 +9,17 @@ import { WardDevToolsPlugins } from '../plugins/PluginsPage'
 import './WardDevToolsContent.css'
 
 const PAGE = {
-  PLUGINS: {
-    name: 'Plugins',
-    element: <WardDevToolsPlugins />
-  },
-  MESSAGES: {
-    name: 'Messages',
-    element: <WardDevToolsMessages />
-  },
+  PLUGINS: 'Plugins',
+  MESSAGES: 'Messages',
 }
 const PAGES = Object.values(PAGE)
 
 export interface WardDevToolsContentProperties {
+  style: CSSProperties
 }
 
 export const WardDevToolsContent = ({
+  style
 }: WardDevToolsContentProperties) => {
 
   // Hooks //
@@ -31,7 +28,7 @@ export const WardDevToolsContent = ({
 
   // Events //
 
-  const handlePageSelected = (p: any) => {
+  const handlePageSelected = (p: string) => {
     setPage(p)
   }
 
@@ -42,17 +39,18 @@ export const WardDevToolsContent = ({
   return (
     <div
       className={classes.join(' ')}
+      style={style}
     >
       <div className='ward-dev-tools-content__header'>
         <ul className='ward-dev-tools-content__header__tabs'>
           {PAGES.map(p => {
             return (
               <li
-                key={p.name}
+                key={p}
                 className={`ward-dev-tools-content__header__tab ${page === p ? 'selected' : ''}`}
                 onClick={() => handlePageSelected(p)}
               >
-                {p.name}
+                {p}
               </li>
 
             )
@@ -61,7 +59,16 @@ export const WardDevToolsContent = ({
       </div>
 
       <div className='ward-dev-tools-content__body'>
-        {page.element}
+        <WardDevToolsPlugins
+          style={{
+            display: page === PAGE.PLUGINS ? undefined : 'none'
+          }}
+        />
+        <WardDevToolsMessages
+          style={{
+            display: page === PAGE.MESSAGES ? undefined : 'none'
+          }}
+        />
       </div>
     </div>
   )

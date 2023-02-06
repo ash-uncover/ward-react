@@ -1,6 +1,6 @@
 {
   "name": "@uncover/ward-react",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "author": "aSH <ash.uncover@gmail.com>",
   "description": "Ward - React integration",
   "license": "MIT",
@@ -21,16 +21,12 @@
     "start": "webpack serve --progress --mode development"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.2.1",
-    "@fortawesome/free-regular-svg-icons": "^6.2.1",
-    "@fortawesome/free-solid-svg-icons": "^6.2.1",
-    "@fortawesome/react-fontawesome": "^0.2.0",
     "@uncover/js-utils": "^0.0.13",
     "@uncover/js-utils-logger": "^0.1.5",
-    "@uncover/ward": "file:../ward"
+    "@uncover/ward": "0.1.16"
   },
   "peerDependencies": {
-    "@uncover/ward": "file:../ward"
+    "@uncover/ward": "0.1.16"
   },
   "devDependencies": {
     "@babel/cli": "^7.20.7",
@@ -39,7 +35,7 @@
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
     "@types/jest": "^29.4.0",
-    "@types/node": "^18.11.18",
+    "@types/node": "^18.11.19",
     "@types/react-dom": "^18.0.10",
     "babel-loader": "^9.1.2",
     "concurrently": "^7.6.0",

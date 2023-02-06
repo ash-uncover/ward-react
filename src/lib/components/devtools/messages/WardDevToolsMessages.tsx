@@ -18,9 +18,7 @@ export const WardDevToolsMessages = ({
   // Hooks //
 
   const services = useWardServices()
-  /*
-  */
-  const service = useWardService((message: Message) => handleMessage(message))
+  const service = useWardService('main', (message: Message) => handleMessage(message))
 
   const [messages, setMessages] = useState<Message[]>([])
 
@@ -28,12 +26,10 @@ export const WardDevToolsMessages = ({
 
   const handleMessage = (message: Message) => {
     console.log('message!')
-    /*
     setMessages([
       ...messages,
       message
     ])
-    */
   }
 
   // Rendering //
@@ -48,9 +44,10 @@ export const WardDevToolsMessages = ({
       <h2>{`Services (${Object.keys(services).length})`}</h2>
       <ul style={{ padding: 0 }}>
         {Object.keys(services).map(serviceId => {
+          const serv = services[serviceId]
           return (
             <li key={serviceId}>
-              {serviceId}
+              {serv.type} - {serviceId}
             </li>
           )
         })}

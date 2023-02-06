@@ -1,7 +1,18 @@
 import Ward, {
+  EventService,
   Message,
   WardData
 } from '@uncover/ward'
+import { MessageDispatcherDataServices } from '@uncover/ward/dist/message/MessageDispatcher'
+import {
+  PluginManagerDataDefinitions,
+  PluginManagerDataPlugins,
+  PluginManagerDataUrl,
+  PluginManagerDataUrls
+} from '@uncover/ward/dist/plugin/PluginManager'
+import Plugin from '@uncover/ward/dist/plugin/object/Plugin'
+import PluginDefine from '@uncover/ward/dist/plugin/object/PluginDefine'
+import PluginProvider from '@uncover/ward/dist/plugin/object/PluginProvider'
 
 import React, {
   ReactNode,
@@ -21,7 +32,8 @@ export const WardContext = createContext<WardContextProperties>({
   plugins: {},
   definitions: {},
   providers: {},
-  services: {}
+  services: {},
+  dispatchers: []
 })
 
 export interface WardProviderProperties {
@@ -44,6 +56,7 @@ export const WardProvider = ({
     definitions: {},
     providers: {},
     services: {},
+    dispatchers: []
   })
 
   useEffect(() => {
@@ -68,64 +81,85 @@ export const WardProvider = ({
   )
 }
 
-export const useWardLoaded = () => {
+export const useWardLoaded = (): boolean => {
   const wardContext = useContext(WardContext)
   return wardContext.loaded
 }
 
-export const useWardUrls = () => {
+export const useWardUrls = (): PluginManagerDataUrls => {
   const wardContext = useContext(WardContext)
   return wardContext.urls
 }
-export const useWardUrl = (url: string) => {
+export const useWardUrl = (url: string): PluginManagerDataUrl => {
   const wardContext = useContext(WardContext)
   return wardContext.urls[url]
 }
 
-export const useWardPlugins = () => {
+export const useWardPlugins = (): PluginManagerDataPlugins => {
   const wardContext = useContext(WardContext)
   return wardContext.plugins
 }
-export const useWardPlugin = (pluginId: string) => {
+export const useWardPlugin = (pluginId: string): Plugin => {
   const wardContext = useContext(WardContext)
   return wardContext.plugins[pluginId]
 }
-export const useWardPluginsRoot = () => {
+export const useWardPluginsRoot = (): PluginManagerDataPlugins => {
   const wardContext = useContext(WardContext)
   return wardContext.roots
 }
 
-export const useWardDefinitions = () => {
+export const useWardDefinitions = (): PluginManagerDataDefinitions => {
   const wardContext = useContext(WardContext)
   return wardContext.definitions
 }
-export const useWardDefinition = (definitionId: string) => {
+export const useWardDefinition = (definitionId: string): PluginDefine => {
   const wardContext = useContext(WardContext)
   return wardContext.definitions[definitionId]
 }
 
-export const useWardProviders = (definitionId: string) => {
+export const useWardProviders = (definitionId: string): PluginProvider[] => {
   const wardContext = useContext(WardContext)
   return Object.values(wardContext.providers).filter(provider => provider.definition === definitionId)
 }
-export const useWardProvider = (providerId: string) => {
+export const useWardProvider = (providerId: string): PluginProvider => {
   const wardContext = useContext(WardContext)
   return wardContext.providers[providerId]
 }
 
-export const useWardServices = () => {
+export const useWardServices = (): MessageDispatcherDataServices => {
   const wardContext = useContext(WardContext)
   return wardContext.services
 }
 
-export const useWardService = (handleMessage: (message: Message) => void) => {
-  const [service, setService] = useState()
+export const useWardService = (id?: string, handleMessage?: (message: Message) => void): EventService => {
+  const services = useWardServices()
+  const [service, setService] = useState<EventService>()
   useEffect(() => {
-    const serv = Ward.addService(handleMessage)
-    setService(serv)
+    let service: EventService
+    let exists = false
+    if (id && services[id]) {
+      service = services[id] as EventService
+      exists = true
+    } else {
+      service = Ward.addService(id)
+    }
+    if (handleMessage) {
+      service.addHandler(handleMessage)
+    }
+    setService(service)
     return () => {
-      serv.terminate()
+      if (exists && handleMessage) {
+        service.removeHandler(handleMessage)
+      } else {
+        service.terminate()
+      }
     }
   }, [])
+  // @ts-ignore
   return service
+}
+
+export const useWardDispatchers = (): string[] => {
+  const wardContext = useContext(WardContext)
+  return wardContext.dispatchers
 }

@@ -14,7 +14,7 @@ export const WardDevTools = ({
 
   // Hooks //
 
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
 
   // Events //
 

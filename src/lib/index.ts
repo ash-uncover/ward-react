@@ -1,4 +1,3 @@
-import './icons'
 export {
   WardDevTools
 } from './components/devtools/WardDevTools'
@@ -18,4 +17,7 @@ export {
   useWardDefinition,
   useWardProvider,
   useWardProviders,
+  useWardService,
+  useWardServices,
+  useWardDispatchers,
 } from './components/provider/WardProvider'

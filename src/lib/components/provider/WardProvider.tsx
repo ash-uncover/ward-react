@@ -25,9 +25,11 @@ import React, {
 } from 'react'
 
 interface WardContextProperties extends WardData {
-  loaded: boolean,
+  plugin: string
+  loaded: boolean
 }
 export const WardContext = createContext<WardContextProperties>({
+  plugin: '',
   loaded: false,
   urls: {},
   roots: {},
@@ -51,6 +53,7 @@ export const WardProvider = ({
   // Hooks //
 
   const [data, setData] = useState<WardContextProperties>({
+    plugin,
     loaded: false,
     urls: {},
     roots: {},
@@ -62,15 +65,17 @@ export const WardProvider = ({
   })
 
   useEffect(() => {
-
+    const eventService = Ward.addService(plugin)
     Ward.loadPlugin(plugin)
     const cb = () => setData({
+      plugin,
       loaded: true,
       ...Ward.data
     })
     Ward.register(cb)
     return () => {
       Ward.unregister(cb)
+      eventService.terminate()
     }
   }, [plugin])
 
@@ -133,32 +138,24 @@ export const useWardServices = (): MessageDispatcherDataServices => {
   return wardContext.services
 }
 
-export const useWardService = (id?: string, handleMessage?: (message: Message) => void): EventService => {
-  const services = useWardServices()
-  const [service, setService] = useState<EventService>()
+export const useWardService = (handleMessage?: (message: Message) => void): {
+  dispatchEvent: (message: Message) => void
+} => {
+  const wardContext = useContext(WardContext)
+  const service = wardContext.services[wardContext.plugin] as EventService
   useEffect(() => {
-    let service: EventService
-    let exists = false
-    if (id && services[id]) {
-      service = services[id] as EventService
-      exists = true
-    } else {
-      service = Ward.addService(id)
-    }
-    if (handleMessage) {
+    if (service && handleMessage) {
       service.addHandler(handleMessage)
     }
-    setService(service)
     return () => {
-      if (exists && handleMessage) {
+      if (service && handleMessage) {
         service.removeHandler(handleMessage)
-      } else {
-        service.terminate()
       }
     }
   }, [])
-  // @ts-ignore
-  return service
+  return {
+    dispatchEvent: service ? service.onMessage : (msg) => console.log('problem')
+  }
 }
 
 export const useWardDispatchers = (): string[] => {

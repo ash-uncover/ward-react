@@ -18,14 +18,13 @@ export const WardDevToolsMessages = ({
   // Hooks //
 
   const services = useWardServices()
-  const service = useWardService('main', (message: Message) => handleMessage(message))
+  const service = useWardService((message: Message) => handleMessage(message))
 
   const [messages, setMessages] = useState<Message[]>([])
 
   // Events //
 
   const handleMessage = (message: Message) => {
-    console.log('message!')
     setMessages([
       ...messages,
       message

@@ -3,7 +3,9 @@ import Ward, {
   Message,
   WardData
 } from '@uncover/ward'
-import { MessageDispatcherDataServices } from '@uncover/ward/dist/message/MessageDispatcher'
+import {
+  MessageDispatcherDataServices
+} from '@uncover/ward/dist/message/MessageDispatcher'
 import {
   PluginManagerDataDefinitions,
   PluginManagerDataPlugins,

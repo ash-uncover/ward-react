@@ -1,6 +1,6 @@
 {
   "name": "@uncover/ward-react",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "author": "aSH <ash.uncover@gmail.com>",
   "description": "Ward - React integration",
   "license": "MIT",
@@ -23,10 +23,10 @@
   "dependencies": {
     "@uncover/js-utils": "^0.0.13",
     "@uncover/js-utils-logger": "^0.1.5",
-    "@uncover/ward": "^0.2.0"
+    "@uncover/ward": "^0.2.1"
   },
   "peerDependencies": {
-    "@uncover/ward": "^0.2.0"
+    "@uncover/ward": "^0.2.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.20.7",

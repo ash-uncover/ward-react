@@ -154,7 +154,7 @@ export const useWardService = (handleMessage?: (message: Message) => void): {
     }
   }, [])
   return {
-    dispatchEvent: service ? service.onMessage : (msg) => console.log('problem')
+    dispatchEvent: (message) => service.onMessage(message)
   }
 }
 

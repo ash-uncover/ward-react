@@ -138,18 +138,32 @@ export const useWardServices = (): MessageDispatcherDataServices => {
   return wardContext.services
 }
 
-export const useWardService = (handleMessage?: (message: Message) => void): {
+export const useWardService = (
+  id: ((message: Message) => void) | string,
+  handleMessage?: (message: Message) => void
+): {
   dispatchEvent: (message: Message) => void
 } => {
+  let realId:any = id
+  let realHandler:any = handleMessage
   const wardContext = useContext(WardContext)
-  const service = wardContext.services[wardContext.plugin] as EventService
+
+  if (typeof id !== 'string') {
+    realId = wardContext.plugin
+    realHandler = handleMessage
+  }
+  let service = wardContext.services[realId] as EventService
+  if (!service) {
+    service = Ward.addService(realId)
+    wardContext.services[realId] = service
+  }
   useEffect(() => {
-    if (service && handleMessage) {
-      service.addHandler(handleMessage)
+    if (service && realHandler) {
+      service.addHandler(realHandler)
     }
     return () => {
-      if (service && handleMessage) {
-        service.removeHandler(handleMessage)
+      if (service && realHandler) {
+        service.removeHandler(realHandler)
       }
     }
   }, [])

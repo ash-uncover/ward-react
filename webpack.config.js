@@ -8,6 +8,7 @@ const DIR_PUBLIC = path.resolve(__dirname, 'public')
 const DIR_NODE_MODULES = path.resolve(__dirname, 'node_modules')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: path.resolve(DIR_SRC, 'index_dev.tsx'),
@@ -26,6 +27,12 @@ module.exports = {
 
 
   plugins: [
+    new CopyPlugin({
+      patterns: [{
+        from: path.resolve(DIR_NODE_MODULES, '@uncover/ward-dev-tools/dist/base/@uncover/ward-dev-tools.base.min.js'),
+        to: 'ward-dev-tools.js',
+      }]
+    }),
     new HtmlWebpackPlugin({
       template: path.resolve(DIR_SRC, 'index_dev.html'),
       filename: 'index.html'
@@ -66,7 +73,6 @@ module.exports = {
         use: [
           { loader: 'style-loader' },
           { loader: 'css-loader' },
-          { loader: 'postcss-loader' },
         ],
       },
     ],

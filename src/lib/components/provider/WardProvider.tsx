@@ -6,15 +6,11 @@ import Ward, {
 import {
   MessageDispatcherDataServices
 } from '@uncover/ward/dist/message/MessageDispatcher'
-import {
-  PluginManagerDataDefinitions,
-  PluginManagerDataPlugins,
-  PluginManagerDataUrl,
-  PluginManagerDataUrls
-} from '@uncover/ward/dist/plugin/PluginManager'
+
 import Plugin from '@uncover/ward/dist/plugin/object/Plugin'
 import PluginDefine from '@uncover/ward/dist/plugin/object/PluginDefine'
 import PluginProvider from '@uncover/ward/dist/plugin/object/PluginProvider'
+import { PluginManagerDataUrl } from '@uncover/ward/dist/plugin/PluginManager'
 
 import React, {
   ReactNode,
@@ -93,7 +89,7 @@ export const useWardLoaded = (): boolean => {
   return wardContext.loaded
 }
 
-export const useWardUrls = (): PluginManagerDataUrls => {
+export const useWardUrls = (): Record<string, PluginManagerDataUrl> => {
   const wardContext = useContext(WardContext)
   return wardContext.urls
 }
@@ -102,7 +98,7 @@ export const useWardUrl = (url: string): PluginManagerDataUrl => {
   return wardContext.urls[url]
 }
 
-export const useWardPlugins = (): PluginManagerDataPlugins => {
+export const useWardPlugins = (): Record<string, Plugin> => {
   const wardContext = useContext(WardContext)
   return wardContext.plugins
 }
@@ -110,12 +106,12 @@ export const useWardPlugin = (pluginId: string): Plugin => {
   const wardContext = useContext(WardContext)
   return wardContext.plugins[pluginId]
 }
-export const useWardPluginsRoot = (): PluginManagerDataPlugins => {
+export const useWardPluginsRoot = (): Record<string, Plugin> => {
   const wardContext = useContext(WardContext)
   return wardContext.roots
 }
 
-export const useWardDefinitions = (): PluginManagerDataDefinitions => {
+export const useWardDefinitions = (): Record<string, PluginDefine> => {
   const wardContext = useContext(WardContext)
   return wardContext.definitions
 }

@@ -29,7 +29,7 @@ module.exports = {
   plugins: [
     new CopyPlugin({
       patterns: [{
-        from: path.resolve(DIR_NODE_MODULES, '@uncover/ward-dev-tools/dist/base/@uncover/ward-dev-tools.base.min.js'),
+        from: path.resolve(DIR_NODE_MODULES, '@uncover/ward-dev-tools/dist/@uncover/ward-dev-tools.min.js'),
         to: 'ward-dev-tools.js',
       }]
     }),

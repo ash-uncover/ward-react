@@ -14,9 +14,8 @@
     "dist/**/*"
   ],
   "scripts": {
-    "build": "npm run build:tsc && npm run build:babel && npm run build:css",
+    "build": "npm run build:tsc && npm run build:babel",
     "build:babel": "babel src/lib --extensions .ts,.tsx --out-dir dist",
-    "build:css": "postcss src/lib/**/*.css --base src/lib --dir dist",
     "build:tsc": "tsc",
     "start": "webpack serve --progress --mode development"
   },

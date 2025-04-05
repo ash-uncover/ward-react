@@ -1,5 +1,5 @@
 {
-  "name": "@uncover/ward-react",
+  "name": "@sol.ac/ward-react",
   "version": "1.0.0",
   "author": "aSH <ash.uncover@gmail.com>",
   "description": "Ward - React integration",
@@ -17,18 +17,17 @@
     "build": "npm run build:tsc && npm run build:babel",
     "build:babel": "babel src/lib --extensions .ts,.tsx --out-dir dist",
     "build:tsc": "tsc",
-    "postinstall": "npm update @uncover/js-utils @uncover/js-utils-logger @uncover/ward @uncover/ward-dev-tools",
     "start": "webpack serve --progress --mode development",
     "prepare": "husky"
   },
   "dependencies": {
-    "@uncover/js-utils": "ash-uncover/js-utils",
-    "@uncover/js-utils-logger": "ash-uncover/js-utils-logger",
-    "@uncover/ward": "ash-uncover/ward",
-    "@uncover/ward-dev-tools": "ash-uncover/ward-dev-tools"
+    "@sol.ac/js-utils": "1.0.1",
+    "@sol.ac/js-utils-logger": "1.0.3",
+    "@sol.ac/ward": "1.0.1",
+    "@sol.ac/ward-dev-tools": "1.0.1"
   },
   "peerDependencies": {
-    "@uncover/ward": "ash-uncover/ward"
+    "@sol.ac/ward": "1.0.1"
   },
   "devDependencies": {
     "@babel/cli": "7.27.0",

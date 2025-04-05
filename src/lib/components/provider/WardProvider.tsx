@@ -1,4 +1,5 @@
-import Ward, {
+import  {
+  Ward,
   EventService,
   Message,
   WardData

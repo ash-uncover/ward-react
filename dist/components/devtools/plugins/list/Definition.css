@@ -1,0 +1,30 @@
+.definition-side-entry {
+  list-style-type: none;
+  padding-left: 0.75rem;
+  cursor: pointer;
+}
+.definition-side-entry::before {
+    content: 'D';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    height: 1rem;
+    font-size: 0.75rem;
+    background: #AABC9E;
+    margin-right: 1rem;
+  }
+.definition-side-entry.selected {
+    font-weight: bold;
+  }
+.definition-side-entry.selected::before {
+      background: #9FBE8C;
+      font-weight: bold;
+      color: white;
+    }
+.definition-side-entry:not(.selected) {
+    font-weight: normal;
+  }
+.definition-side-entry .definition-side-entry__entries {
+    padding: 0;
+  }

@@ -1,0 +1,30 @@
+.plugin-side-entry {
+  list-style-type: none;
+  padding-left: 0.75rem;
+  cursor: pointer;
+}
+.plugin-side-entry::before {
+    content: 'W';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    height: 1rem;
+    font-size: 0.75rem;
+    background: #C87978;
+    margin-right: 1rem;
+  }
+.plugin-side-entry.selected {
+    font-weight: bold;
+  }
+.plugin-side-entry.selected::before {
+      background: #A82D59;
+      font-weight: bold;
+      color: white;
+    }
+.plugin-side-entry:not(.selected) {
+    font-weight: normal;
+  }
+.plugin-side-entry .plugin-side-entry__entries {
+    padding: 0;
+  }

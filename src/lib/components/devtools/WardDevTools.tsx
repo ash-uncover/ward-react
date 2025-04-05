@@ -16,7 +16,8 @@ export const WardDevTools = ({
   // Rendering //
 
   return (
-    <ward-dev-tools />
+    // @ts-ignore
+    <ward-dev-tools></ward-dev-tools>
   )
 }
 

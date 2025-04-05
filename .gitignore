@@ -9,6 +9,7 @@ config.json
 docs
 docs_child
 bundles
+dist
 
 # test coverage info
 test/__coverage__

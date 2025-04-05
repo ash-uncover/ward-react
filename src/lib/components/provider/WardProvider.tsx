@@ -3,15 +3,15 @@ import  {
   EventService,
   Message,
   WardData
-} from '@uncover/ward'
+} from '@sol.ac/ward'
 import {
   MessageDispatcherDataServices
-} from '@uncover/ward/dist/message/MessageDispatcher'
+} from '@sol.ac/ward/dist/message/MessageDispatcher'
 
-import Plugin from '@uncover/ward/dist/plugin/object/Plugin'
-import PluginDefine from '@uncover/ward/dist/plugin/object/PluginDefine'
-import PluginProvider from '@uncover/ward/dist/plugin/object/PluginProvider'
-import { PluginManagerDataUrl } from '@uncover/ward/dist/plugin/PluginManager'
+import Plugin from '@sol.ac/ward/dist/plugin/object/Plugin'
+import PluginDefine from '@sol.ac/ward/dist/plugin/object/PluginDefine'
+import PluginProvider from '@sol.ac/ward/dist/plugin/object/PluginProvider'
+import { PluginManagerDataUrl } from '@sol.ac/ward/dist/plugin/PluginManager'
 
 import React, {
   ReactNode,

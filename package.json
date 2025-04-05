@@ -17,43 +17,33 @@
     "build": "npm run build:tsc && npm run build:babel",
     "build:babel": "babel src/lib --extensions .ts,.tsx --out-dir dist",
     "build:tsc": "tsc",
-    "start": "webpack serve --progress --mode development",
     "prepare": "husky"
   },
   "dependencies": {
     "@sol.ac/js-utils": "1.0.1",
     "@sol.ac/js-utils-logger": "1.0.3",
     "@sol.ac/ward": "1.0.1",
-    "@sol.ac/ward-dev-tools": "1.0.1"
-  },
-  "peerDependencies": {
-    "@sol.ac/ward": "1.0.1"
+    "@sol.ac/ward-dev-tools": "1.0.1",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
   },
   "devDependencies": {
     "@babel/cli": "7.27.0",
     "@babel/core": "7.26.10",
+    "@babel/eslint-parser": "7.27.0",
     "@babel/preset-env": "7.26.9",
     "@babel/preset-react": "7.26.3",
     "@babel/preset-typescript": "7.27.0",
-    "@types/jest": "29.5.14",
-    "@types/node": "22.14.0",
+    "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",
-    "babel-loader": "10.0.0",
-    "concurrently": "9.1.2",
-    "copy-webpack-plugin": "^13.0.0",
-    "css-loader": "7.1.2",
-    "html-webpack-plugin": "5.6.3",
     "husky": "9.1.7",
-    "node-fetch": "3.3.2",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "react-router-dom": "7.5.0",
-    "style-loader": "4.0.0",
-    "ts-loader": "9.5.2",
-    "ts-node": "10.9.2",
-    "typescript": "5.8.3",
-    "webpack": "5.98.0",
-    "webpack-cli": "6.0.1",
-    "webpack-dev-server": "5.2.1"
+    "typescript": "5.8.3"
+  },
+  "eslintConfig": {
+    "extends": "react-app",
+    "env": {
+      "node": true,
+      "jest": true
+    }
   }
 }
